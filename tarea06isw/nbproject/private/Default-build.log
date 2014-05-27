@@ -1,0 +1,14 @@
+mkdir -p build
+rm -f build/comunicacion.o.d
+gcc -Wall -g3 -c -MMD -MP -MF build/comunicacion.o.d -o build/comunicacion.o comunicacion.c	
+comunicacion.c: In function ‘comunicar’:
+comunicacion.c:100:14: warning: variable ‘res’ set but not used [-Wunused-but-set-variable]
+     CURLcode res;
+              ^
+mkdir -p build
+rm -f build/main.o.d
+gcc -Wall -g3 -c -MMD -MP -MF build/main.o.d -o build/main.o main.c
+mkdir -p dist
+gcc -Wall -g3    -o dist/curlapp build/comunicacion.o build/main.o -lssl -lcrypto -lcurl -lz 
+rm -f -fr build
+rm -f -fr core
